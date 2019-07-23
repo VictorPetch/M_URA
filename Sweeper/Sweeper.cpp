@@ -32,6 +32,18 @@ long Sweeper::dist() {
   return distanceCm;
 
 }
+long Sweeper::distSemOutlier(){
+  long x = dist();
+  long y = dist();
+  if(x == y) return x;
+  else{
+    while(x != y){
+      x = y;
+      y = dist();  
+    }
+    return x;
+  }
+}
 void Sweeper::setup(Servo myservo) {
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
@@ -60,8 +72,8 @@ void Sweeper::sweeping(Servo myservo,char * movimento,int n, int distancias[4], 
   if(movimento == "pradireita"){
     for(int pos =160; pos>20; pos-=140/n){
       myservo.write(pos); 
-      delay(1000);
-      distancias[i] = dist(); 
+      delay(500);
+      distancias[i] = distSemOutlier(); 
       angulos[i] = pos;
       i++;
       
@@ -71,7 +83,7 @@ void Sweeper::sweeping(Servo myservo,char * movimento,int n, int distancias[4], 
     for(int pos =20; pos<160; pos+=140/n){
       myservo.write(pos); 
       delay(500);
-      distancias[i] = dist(); 
+      distancias[i] = distSemOutlier(); 
       angulos[i] = pos;
       i++;
     }   
@@ -85,11 +97,11 @@ void Sweeper::execution(int flag){
           movSweeper("paradisgraça",50);
         break;
         case 1:
-          movSweeper("viradireita", 200);
+          movSweeper("viraesquerda", 200);
           movSweeper("paradisgraça",50);
         break;
         case 2:
-          movSweeper("viraesquerda", 200);
+          movSweeper("viradireita", 200);
           movSweeper("paradisgraça",50);
         break;
         case 3:
@@ -203,36 +215,36 @@ void Sweeper::LED_teste(int flag){
 void Sweeper::ultrassomTeste(Servo myservo){
   myservo.write(20);
   delay(500);
-  Serial.print(dist());
+  Serial.print(distSemOutlier());
   Serial.print(" ");
   myservo.write(48);
   delay(500);
-  Serial.print(dist());
+  Serial.print(distSemOutlier());
   Serial.print(" ");  
   myservo.write(112);
   delay(500);
-  Serial.print(dist());
+  Serial.print(distSemOutlier());
   Serial.print(" ");
   myservo.write(138);
   delay(500);
-  Serial.print(dist());
+  Serial.print(distSemOutlier());
   Serial.println(" ");
   
   myservo.write(138);
   delay(500);
-  Serial.print(dist());
+  Serial.print(distSemOutlier());
   Serial.print(" ");
   myservo.write(112);
   delay(500);
-  Serial.print(dist());
+  Serial.print(distSemOutlier());
   Serial.print(" ");  
   myservo.write(48);
   delay(500);
-  Serial.print(dist());
+  Serial.print(distSemOutlier());
   Serial.print(" ");
   myservo.write(20);
   delay(500);
-  Serial.print(dist());
+  Serial.print(distSemOutlier());
   Serial.println(" ");  
   
 }

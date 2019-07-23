@@ -22,13 +22,7 @@ void setup() {
  //delay(500);
 // myservo.write(20);
  //delay(500);
- pinMode(11,OUTPUT);
- pinMode(10,OUTPUT);
- 
- while(true){
 
-  
-  };
 }
 
 void loop() {
@@ -39,11 +33,12 @@ void loop() {
   //int array1[5] = {6,3,0,4,5};
   //int array2[5] = {45,0,10,22,3};
   //int x,y = Mcqueen.findSmallestElement(array1,array2,5);
+  
   Mcqueen.sweeping(myservo, "pradireita",3,distancias,angulos);
   int menorDist, menorAng = Mcqueen.findSmallestElement(distancias,angulos,4);
   int clusterDist, flag = Mcqueen.clusterCalc(menorDist, menorAng);
   Mcqueen.LED_teste(flag);
-  //Mcqueen.execution(flag);
+  Mcqueen.execution(flag);
 
 for(int i=0; i<4;i++){
     Serial.print("Distancia: ");
@@ -55,11 +50,11 @@ for(int i=0; i<4;i++){
      Serial.print("Flag: ");
      Serial.println(flag);
 
-  Mcqueen.sweeping(myservo, "pradireita",3,distancias,angulos);
+  Mcqueen.sweeping(myservo, "praesquerda",3,distancias,angulos);
   menorDist, menorAng = Mcqueen.findSmallestElement(distancias,angulos,4);
   clusterDist, flag = Mcqueen.clusterCalc(menorDist, menorAng);
   Mcqueen.LED_teste(flag);
-  //Mcqueen.execution(flag);
+  Mcqueen.execution(flag);
   
   for(int i=0; i<4;i++){
     Serial.print("Distancia: ");

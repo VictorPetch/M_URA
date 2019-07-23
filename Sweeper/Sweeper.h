@@ -12,6 +12,7 @@ class Sweeper
     void setup(Servo myservo);
     long tempo();
     long dist();
+    long distSemOutlier();
     void sweeping(Servo myservo,char * movimento, int n,int distancias[4], int angulos[4]);    
     int findSmallestElement(int distancias[], int angulos[],int sizeOfArrays);
     void movMotor(const char * seila,const char * seilatbm);
